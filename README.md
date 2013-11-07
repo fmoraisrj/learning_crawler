@@ -1,4 +1,4 @@
-leraning_crawler
+learning_crawler
 ================
 
 Algoritmo para criar um crawler
