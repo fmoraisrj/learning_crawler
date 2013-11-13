@@ -3,10 +3,12 @@
 import string
 import pdb
 import codecs
-# texto = "como uma onde no mar, como uma onda no mar."
+import re
+
 
 def open_txt(file_name):
-	return codecs.open(file_name, 'r', 'utf-8')
+	f = codecs.open(file_name, 'r' , encoding = 'utf-8')
+	return f.read()
 
 def count_a_number_of_repetitions_and_say_who_is_more_mentioned(txt):
 	txt = txt.split() 
@@ -31,27 +33,28 @@ def count_a_number_of_repetitions_and_say_who_is_more_mentioned(txt):
 def remove_break_lines(txt):
 	txt =  txt.replace("\n", " ")
 	return string.strip(txt)
-	# return txt.split("\n").join(" ") 
+	
 
 
 def remove_punctuation(txt):
-	return txt.translate(None, string.punctuation)
+	return re.sub("[?.!,\"\'\n()]", " ", txt)
+	
 
 def remove_less_than_3(txt):
-	i = 0;
-	txt = txt.split(" ")
+	i = 0
+	cleaned_txt = []
+	txt = txt.split()
+
 	while i < len(txt):
-		if len(txt[i]) < 3:
-			txt.remove(txt[i])
+		if not (len(txt[i]) < 3):
+			cleaned_txt.append(txt[i])
 		i += 1
-	
-	# Transformando list em uma string separada por spaço
-	txt = string.join(txt, " ")
-	return txt
+	cleaned_txt = string.join(cleaned_txt, " ")
+	return cleaned_txt
+
 
 def most_popular_word(file_name):
 	txt = open_txt(file_name)
-	# txt = unicode(txt)
 	txt_without_break_lines = remove_break_lines(txt)
 	txt_without_punctuation = remove_punctuation(txt_without_break_lines)
 	txt_without_punctuation_and_less_than_3_words = remove_less_than_3(txt_without_punctuation)

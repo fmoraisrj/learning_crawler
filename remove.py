@@ -1,10 +1,17 @@
-#! _*_ encoding: utf-8 _*_
+#! encoding: utf-8 
+import string
 
-fruits = ["banana", "jaca", "pera", "maçã", "fe"]
+def remove(txt):
+	fruits = fruits.split()
 
-i = 0
-while i < len(fruits):
-	if len(fruits[i]) < 3:
-		fruits.remove(fruits[i])
-		print fruits
-	i += 1
+	i = 0
+	cleaned_fruits = []
+	
+	while i < len(fruits):
+		if not (len(fruits[i]) < 3):
+			cleaned_fruits.append(fruits[i])
+		i += 1
+	cleaned_fruits = string.join(cleaned_fruits, " ")
+	return cleaned_fruits
+
+print remove("tete de de de de de")
